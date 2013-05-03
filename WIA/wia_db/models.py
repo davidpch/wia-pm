@@ -88,6 +88,8 @@ class Task(models.Model):
     status = models.CharField(max_length=30)
     priority = models.IntegerField()
     total_time = models.IntegerField()
+    phase = models.ForeignKey(Phase)
+    users = models.ManyToManyField(WIAUser) #users associated with task/subtask
     
     def __unicode__(self):
         return self.title

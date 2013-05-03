@@ -1,6 +1,6 @@
 # WIA persistence API
 from django.db.utils import DatabaseError
-from wia_db.models import WIAUser
+from wia_db.models import WIAUser, Subtask
 
 def createWIAObject(new_obj):
     try:
@@ -53,14 +53,13 @@ def updateTask(tsk):
 def getSubTasksFromUser(usr, prj):
     """
     Gets all the subtasks from a user of a certain project
-    usr - user to filter. If a number is passed it will filter by id. 
-        if a string is passed it will filter by username.
+    usr - user to filter. 
     prj - project id to filter
 
     """
+    return Subtask.objects.filter(project__id=prj.id, wiauser__id=usr.id)
     
     
-    #if isinstance( usr, ( int ) ):
         
     
     

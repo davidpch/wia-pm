@@ -6,8 +6,8 @@ Replace this with more appropriate tests for your application.
 """
 
 from django.test import TestCase
-from wia_db.models import WIAUser, WIAUserSkill
-from wia_db.persistence import createUser
+from wia_db.models import WIAUser, Project
+from wia_db.persistence import createWIAObject, getSubTasksFromUser
 import pdb
 
 class SimpleTest(TestCase):
@@ -17,4 +17,13 @@ class SimpleTest(TestCase):
         users = WIAUser.objects.all()
         print(users)
         nu = WIAUser(first_name="Boda", last_name="da Silva", username="boda", user_type="boss", avatar_uri="http://boda.com")
-        print(createUser(nu))
+        createWIAObject(nu)
+        print(WIAUser.objects.filter(username="boda"))
+        
+        prj = Project(name="TEST")
+        prj.users.add(nu)
+        
+        print(getSubTasksFromUser(nu, prj))
+        
+    
+        

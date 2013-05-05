@@ -1,6 +1,6 @@
 # WIA persistence API
 from django.db.utils import DatabaseError
-from wia_db.models import WIAUser, Subtask
+from wia_db.models import WIAUser, Subtask, Project
 
 def createWIAObject(new_obj):
     try:
@@ -49,6 +49,32 @@ def createTask(new_task):
 def updateTask(tsk):
     return updateWIAObject(tsk)
 
+def createProjectPhase(ph):
+    return createWIAObject(ph)
+
+def updateProjectPhase(ph):
+    return updateWIAObject(ph)
+
+def createMilestone(ml):
+    return createWIAObject(ml)
+
+def updateMilestone(ml):
+    return updateWIAObject(ml)
+
+def createProjectTemplate(tmpl):
+    return createWIAObject(tmpl)
+
+def updateProjectTemplate(tmpl):
+    return updateWIAObject(tmpl)
+
+def insertUserLog(log):
+    return createWIAObject(log)
+
+def getProjectFromUser(usr):
+    """
+    Gets the list of projects in which the user is currently enrolled
+    """
+    return Project.objects.filter(users__id=usr.id)
 
 def getSubTasksFromUser(usr, prj):
     """
@@ -57,7 +83,7 @@ def getSubTasksFromUser(usr, prj):
     prj - project id to filter
 
     """
-    return Subtask.objects.filter(project__id=prj.id, wiauser__id=usr.id)
+    return Subtask.objects.filter(phase__project__id=prj.id, users__id=usr.id)
     
     
         

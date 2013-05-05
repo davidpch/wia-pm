@@ -19,8 +19,9 @@ class SimpleTest(TestCase):
         nu = WIAUser(first_name="Boda", last_name="da Silva", username="boda", user_type="boss", avatar_uri="http://boda.com")
         createWIAObject(nu)
         print(WIAUser.objects.filter(username="boda"))
-        
+
         prj = Project(name="TEST")
+        prj.save()
         prj.users.add(nu)
         
         print(getSubTasksFromUser(nu, prj))

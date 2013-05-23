@@ -1,6 +1,6 @@
 # WIA persistence API
 from django.db.utils import DatabaseError
-from wia_db.models import WIAUser, Subtask, Project
+from wia_db.models import WIAUser, Subtask, Project, Prediction
 
 def createWIAObject(new_obj):
     try:
@@ -69,6 +69,22 @@ def updateProjectTemplate(tmpl):
 
 def insertUserLog(log):
     return createWIAObject(log)
+
+def saveCollision(collision):
+    return createWIAObject(collision)
+
+def saveFlag(flag):
+    return createWIAObject(flag)
+
+def saveUserPrediction(prediction):
+    return createWIAObject(prediction)
+    
+def getPredictionFromUser(usr):
+    """
+    Gets the list of predictions related with the user
+    """
+    return Prediction.objects.filter(users__id=usr.id)
+
 
 def getProjectFromUser(usr):
     """

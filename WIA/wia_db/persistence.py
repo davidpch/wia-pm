@@ -24,60 +24,6 @@ def updateWIAObject(obj):
     except DatabaseError as e:
         print(e.__str__())        
         
-
-def createWIAUser(new_user):
-    return createWIAObject(new_user)
-    
-    
-def updateWIAUser(usr):
-    return updateWIAObject(usr) 
-
-def getWIAUser(usern):
-    return WIAUser.objects.get(username=usern)
-    
-    
-def createProject(new_proj):
-    return createWIAObject(new_proj)
-    
-def updateProject(proj):
-    return updateWIAObject(proj)
-    
-    
-def createTask(new_task):
-    return createWIAObject(new_task)
-
-def updateTask(tsk):
-    return updateWIAObject(tsk)
-
-def createProjectPhase(ph):
-    return createWIAObject(ph)
-
-def updateProjectPhase(ph):
-    return updateWIAObject(ph)
-
-def createMilestone(ml):
-    return createWIAObject(ml)
-
-def updateMilestone(ml):
-    return updateWIAObject(ml)
-
-def createProjectTemplate(tmpl):
-    return createWIAObject(tmpl)
-
-def updateProjectTemplate(tmpl):
-    return updateWIAObject(tmpl)
-
-def insertUserLog(log):
-    return createWIAObject(log)
-
-def saveCollision(collision):
-    return createWIAObject(collision)
-
-def saveFlag(flag):
-    return createWIAObject(flag)
-
-def saveUserPrediction(prediction):
-    return createWIAObject(prediction)
     
 def getPredictionFromUser(usr):
     """
